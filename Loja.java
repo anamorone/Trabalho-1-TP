@@ -6,6 +6,7 @@ public class Loja {
 
     public Loja(String nomeLoja){
         this.nomeLoja = nomeLoja;
+        this.estoque = new ArrayList<>();
     }
 
     public void cadastrarProduto(Produto produto){

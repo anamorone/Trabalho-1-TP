@@ -12,6 +12,10 @@ public class JanelaPrincipal extends JFrame{
 
     public Loja loja;
 
+
+    public JTextArea areaLista = new JTextArea(10, 30);
+    public JButton botaoListar = new JButton("Listar produtos");
+
     public JanelaPrincipal(Loja loja){
         this.loja = loja;
 
@@ -36,9 +40,13 @@ public class JanelaPrincipal extends JFrame{
         abaCadastro.add(campoQntdCadastro);
         abaCadastro.add(botaoCadastro);
 
+        JPanel abaListagem = new JPanel();
+        abaListagem.add(new JScrollPane(areaLista));
+        abaListagem.add(botaoListar);
 
         abas.addTab("Vendas", abaVenda);
         abas.addTab("Cadastro", abaCadastro);
+        abas.addTab("Estoque", abaListagem);
         add(abas);
         
         configurarEventos();
@@ -78,6 +86,13 @@ public class JanelaPrincipal extends JFrame{
                 campoQntdCadastro.setText("");
             } catch (NumberFormatException ex){
                 JOptionPane.showMessageDialog(this, "Erro: Verifique se preço e quantidade são números válidos.");
+            }
+        });
+
+        botaoListar.addActionListener(e -> {
+            areaLista.setText("");
+            for(Produto p : loja.estoque) {
+                areaLista.append(p.nome + " - R$" + p.preco + "(Estoque: " + p.quantidade + ")\n");
             }
         });
 
