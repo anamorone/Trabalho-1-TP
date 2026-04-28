@@ -6,7 +6,7 @@ import java.awt.*;
 public class JanelaPrincipal extends JFrame {
     // venda
     public JTextField campoNomeVenda = new JTextField(15);
-    public JTextField campoQntdVenda = new JTextField(5); // Novo campo de quantidade
+    public JTextField campoQntdVenda = new JTextField(5); 
     public JButton botaoVenda = new JButton("Confirmar Venda");
 
     // cadastro
@@ -122,7 +122,8 @@ public class JanelaPrincipal extends JFrame {
                 Produto p = loja.buscarProduto(nome);
                 if (p != null) {
                     p.quantidade += qntd;
-                    JOptionPane.showMessageDialog(this, "Estoque atualizado!");
+                    p.preco = preco;
+                    JOptionPane.showMessageDialog(this, "Produto atualizado!");
                 } else {
                     loja.cadastrarProduto(new Produto(nome, preco, qntd));
                     JOptionPane.showMessageDialog(this, "Novo produto cadastrado!");
